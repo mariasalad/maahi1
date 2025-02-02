@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maahii- Product Designer</title>
+    <link rel="stylesheet" href="stl.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">MAAHII</div>
+            <div class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#"  class="">About</a>
+                <a href="#">Service</a>
+                
+                <a href="#">My Work</a>
+                <a href="#">Page</a>
+            </div>
+            <div class="nav-right">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <button class="cta-button">Let's Chat →</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="hero-section">
+        <div class="hero-content">
+            <h2 class="animate slide-left">Hi, I'm Maahii salad</h2>
+            <h1 class="animate slide-left">
+                A Product <span class="highlight">Designer</span>,<br>
+                Infinitely Creative<br>
+                Solutions
+            </h1>
+            <p class="animate fade-in">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut</p>
+            <button class="cta-button animate fade-in">Get In Touch →</button>
+        </div>
+        <div class="hero-image animate slide-right">
+            <div class="image-container">
+                <img src="swir/maahi.jpg" alt="Product Designer">
+                <div class="decoration-star"></div>
+                <div class="decoration-cloud"></div>
+                <div class="experience-badge">10+</div>
+            </div>
+        </div>
+    </main>    
+
+    <section class="stats-section">
+        <div class="stat-card animate fade-in">
+            <h3 class="stat-number">16+</h3>
+            <p class="stat-label">Award Achieved</p>
+        </div>
+        
+        <div class="stat-card animate fade-in">
+            <h3 class="stat-number">95+</h3>
+            <p class="stat-label">Projects completed</p>
+        </div>
+        
+        <div class="stat-card animate fade-in">
+            <h3 class="stat-number">85+</h3>
+            <p class="stat-label">Happy Clients</p>
+        </div>
+
+        
+
+    </section>
+
+    <section class="services-section">
+        <div class="service-card animate fade-in">
+            <div class="service-icon">
+                <i class="fas fa-desktop"></i>
+            </div>
+            <h3>Web Design</h3>
+            <p>Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore eius.</p>
+            <a href="#" class="read-more">Read More →</a>
+        </div>
+
+        <div class="service-card animate fade-in">
+            <div class="service-icon">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>UI/UX Design</h3>
+            <p>Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore eius.</p>
+            <a href="#" class="read-more">Read More →</a>
+        </div>
+
+        <div class="service-card animate fade-in">
+            <div class="service-icon">
+                <i class="fas fa-cube"></i>
+            </div>
+            <h3>Product Design</h3>
+            <p>Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore eius.</p>
+            <a href="#" class="read-more">Read More →</a>
+        </div>
+    </section>
+
+
+   
+
+    <header>
+        <h1>Aevine</h1> 
+        <nav>
+            <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="contact">
+        <div>
+            <p>Email Me:</p>
+            <a href="mailto:contact@domain.com">contact@domain.com</a>
+        </div>
+        <div>
+            <p>Call Me:</p>
+            <a href="tel:+65662255">652528281</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Copyright © 2025  by MAAHII .</p>
+    </footer>
+
+    
+   
+   
+   
+    <script>
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentNumber = Math.floor(progress * (end - start) + start);
+                element.textContent = currentNumber + '+';
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    
+                    // Check if this is a stat number and animate it
+                    if (entry.target.classList.contains('stat-card')) {
+                        const numberElement = entry.target.querySelector('.stat-number');
+                        const finalNumber = parseInt(numberElement.textContent);
+                        animateValue(numberElement, 0, finalNumber, 2000); // 2000ms = 2 seconds
+                    }
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animate elements and stat cards
+        document.querySelectorAll('.animate, .stat-card').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
